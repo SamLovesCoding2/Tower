@@ -1,0 +1,89 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package hanoi;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+/**
+ *
+ * @author lupeiyu
+ */
+public class Hanoi
+{
+
+    /**
+     * @param args the command line arguments
+     */
+    public static Stack<Integer> stk1;
+    public static Stack<Integer> stk2;
+    public static Stack<Integer> stk3;
+    public static int Number;
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        stk1 = new Stack<Integer>();
+        stk2 = new Stack<Integer>();
+        stk3 = new Stack<Integer>();
+        System.out.println("How many disks? ");
+        
+        int numOfD = sc.nextInt();
+        Number = numOfD;
+            for(int i = numOfD;i >0;i--)
+            {
+                stk1.push(i);
+            }
+            print();
+            move(numOfD,stk1,stk2,stk3);
+        
+    }
+    public static void move(int n, Stack<Integer> stk1, Stack<Integer> stk2,Stack<Integer> stk3)
+    {
+        if(n<=0)
+        {
+            return;
+        }
+        if(n > 0)
+        {
+            move(n-1,stk1,stk3,stk2);
+            int currentN = stk1.pop();
+            stk3.push(currentN);
+            print();
+            move(n-1,stk2,stk1,stk3);
+        }
+
+    }
+    public static void print()
+    {
+        System.out.println("  A  |  B  |  C  ");
+        System.out.println("++++++++++++++++++");
+        for(int i = Number-1;i>=0;i--)
+        {
+            String str1 = " ";
+            String str2 = " ";
+            String str3 = " ";
+            try
+             {
+                 str1 = String.valueOf(stk1.get(i));
+             }
+             catch (Exception e){
+             }  try
+             {
+                 str2 = String.valueOf(stk2.get(i));
+             }
+             catch (Exception e){
+             }  try
+             {
+                 str3 = String.valueOf(stk3.get(i));
+             }
+             catch (Exception e){
+             }  
+             System.out.println("  " +str1+ "  |  "+ str2 + "  |  "+ str3);
+        }
+        System.out.println("");
+        
+    }
+}
