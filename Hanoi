@@ -46,14 +46,11 @@ public class Hanoi
         {
             return;
         }
-        if(n > 0)
-        {
-            move(n-1,stk1,stk3,stk2);
-            int currentN = stk1.pop();
-            stk3.push(currentN);
-            print();
-            move(n-1,stk2,stk1,stk3);
-        }
+        move(n-1,stk1,stk3,stk2);
+        int currentN = stk1.pop();
+        stk3.push(currentN);
+        print();
+        move(n-1,stk2,stk1,stk3);
 
     }
     public static void print()
